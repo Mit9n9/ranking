@@ -102,8 +102,6 @@ class Solution:
                  mlp_path=os.environ['MLP_PATH'],
                  num_cluster_centroids=8192,
                  num_candidates=50):
-        # self.glove_vectors_path = os.environ['EMB_PATH_GLOVE']
-        # time.sleep(10)
         self.embs = self._read_glove_embeddings(emb_path_glove)
         self.krnm_embs = torch.load(emb_path_knrm)
         self.index = None
@@ -176,7 +174,6 @@ class Solution:
         return text
 
     def create_ranking_batch(self,  question: str, candidates: np.array(str)):
-        # candidates = self.find_kmeans(doc=question, k=num_candidates)
         preproc_candidates = [self._convert_text_to_token_idxs(candidate) for candidate in candidates]
         preproc_question = self._convert_text_to_token_idxs(question)
         padded_candidates = []
